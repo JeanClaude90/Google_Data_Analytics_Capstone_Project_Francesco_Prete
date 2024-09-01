@@ -22,6 +22,7 @@ From these insights the team will design strategies to reduce the frequency of t
 This is intended as a pilot study. In the future the company intends to extend the analysis per city districts and evaluate the situation in other periods of the year. On the basis of the quality of the service provided, the City of Chicago will decide whether to continue the cooperation with INTERSEC.
 
 ASK
+
 1.	Define a general scenario for the types of crime in Chicago for the year 2023, useful for further studies.
 2.	How many cases of thefts in apartments has been registered during year 2023 on the average?
 3.	For the desired period taken into exam – Christmas and New year’s Eve time – which are the trends regarding theft in apartment buildings in Chicago?
@@ -38,7 +39,9 @@ My audience is:
 
 I will be providing the key findings with visualizations and recommendations to answer the business case or, more precisely, before the preparation of the data analysis, I will first extract the data I need from the public dataset previously stored on Google Big Query Sandbox. Then I will use SQL for preparing and analyzing the data.
 After that, for the representation of the collected data I will use Spreadsheets and BI tool Tableau. All the vizualizations I created are stored in Tableau Public and can be accessed by clicking the link provided right before the vizualizations in this Capstone project.
+
 PREPARE
+
 To avoid plagiarism, it is important to mention that for this case study it will be used the following public dataset, Chicago Crime Data
 https://console.cloud.google.com/bigquery(cameo:product/city-of-chicago-public-data/chicago-crime)?project=bellabeatproj-430920
 
@@ -56,6 +59,7 @@ The whole table contains 22 columns.
 To make sure that the dataset is reliable it is important to follow first the ROCCC process. Data is reliable, original, comprehensive, current and cited, so it is possible to continue the analysis.
 
 PROCESS
+
 To uncover the data and get a general understanding it is necessary to explore it and use some filters:
 #1First, I wanted to understand how many cases of crime are committed yearly in Chicago in year 2023
 
@@ -99,6 +103,7 @@ Result: Street (15,742), Apartment (7,355), Small Retail Store (4,393), Residenc
 Most of the cases are registered on the street, in apartments and stores. On the basis of these general results we know for now that for the year 2023, 7,355 cases of theft have been committed at apartment buildings.
 
 ANALYZE
+
 Once collected the part of data necessary for the analysis we can start the examination of the selected information.
 
 #1 It will be useful to discover of the average of such cases weekly for the considered year.
@@ -180,6 +185,7 @@ We can conclude that for the period December 2023 the registered cases of theft 
 Moreover December 2023 is the month on which were registered more than the average cases of theft in apartment buildings.
 
 SHARE
+
 Considering the fact that I am not able to use Google Big Query sandbox directly to create visualization nor to create new tables, I have collected the analyzed data into spreadsheets to be uploaded onto Tableau to create the proper visualization.
 You will see bar charts, a tree map and line charts regarding:
 a) types of crime in Chicago for the year 2023
@@ -227,6 +233,7 @@ https://public.tableau.com/app/profile/francesco.prete/viz/average_dec23vs_month
 d)
  
 ACT
+
 After showing a general situation in the city for the year 2023, I could reach to these conclusions:
 Although the date included in this study don’t show the evidence of this, December 2023 was as well the month in which there has been the highest number of registered cases of theft at apartments, whereas the month on which the lowest number of cases has been registered for year 2023 was February, that is at the same time the month that represents a rate below the monthly average.
 Curiously, the climate in December doesn’t seems to have any influence on the frequency of such cases (daily temperatures are between 0°C and 6°C Celsius degrees)
