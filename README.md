@@ -58,30 +58,34 @@ To make sure that the dataset is reliable it is important to follow first the RO
 PROCESS
 To uncover the data and get a general understanding it is necessary to explore it and use some filters:
 #1First, I wanted to understand how many cases of crime are committed yearly in Chicago in year 2023
+
 SELECT COUNT (unique_key) AS total_cases FROM `bigquery-public-data.chicago_crime.crime`
 WHERE year = 2023;
  
 Result: 262,431
 
 #2How many different types of crime in Chicago for the year 2023?
+
 SELECT COUNT (DISTINCT primary_type) AS types_of_crime FROM `bigquery-public-data.chicago_crime.crime`
 WHERE year = 2023;
  
 Result: 31
+
 #3which types of crimes are the most committed for the year 2023 TOP 5:
+
 SELECT COUNT (unique_key), primary_type AS top5 FROM `bigquery-public-data.chicago_crime.crime`
 WHERE year = 2023
 GROUP BY (primary_type)
 ORDER BY COUNT(unique_key) DESC
 LIMIT 5;
 
-
- 
 Result: Theft (57,433), Battery (44,203), Criminal Damage (30,076), Motor Vehicle Theft (29,246), Assault (22,615)
 
 On the basis of these preliminary information for the year 2023 262,419 crime attempts have been committed. Out of the 31 different crime types, theft is the most attempted, followed by battery and then criminal damage, motor vehicle theft and assault.
 At this point it is possible to concentrate on the analysis of the crime of theft. To know more about the location on which the cases of theft are perpetrated:
+
 #4in which places have been registered cases of theft, top5:
+
 SELECT COUNT(unique_key), location_description FROM `bigquery-public-data.chicago_crime.crime`
 WHERE primary_type = 'THEFT'
 AND year = 2023
@@ -96,21 +100,25 @@ Most of the cases are registered on the street, in apartments and stores. On the
 
 ANALYZE
 Once collected the part of data necessary for the analysis we can start the examination of the selected information.
+
 #1 It will be useful to discover of the average of such cases weekly for the considered year.
+
 SELECT COUNT (unique_key) / 52.0 AS avg_weekly_23 FROM `bigquery-public-data.chicago_crime.crime`
 WHERE primary_type = 'THEFT'
 AND location_description = 'APARTMENT'
 AND date BETWEEN '2023-01-01 00:00:00 UTC' AND '2023-12-31 23:59:59 UTC'
 
- 
 Result: 141.44
+
 On average, we know that more than 140 cases of theft in the apartments are registered in Chicago weekly.
 The weekly average will be important for the next part of the analysis, as it will be compared to the weeks under Christmas period.
 We need to discover whether during the weeks containing the Christmas day and the New Year’s Eve the cases of theft at apartments are below or above the average and possibly understanding the reasons.
+
 #2Cases of theft in apartments under the Christmas period for the weeks:
 1.	2023-12-18 – 2023-12-24
 2.	2023-12-25 – 2023-12-31
 3.	2024-01-01 – 2024-01-01
+
 SELECT COUNT (unique_key) AS week1
 FROM `bigquery-public-data.chicago_crime.crime`
 WHERE primary_type = 'THEFT'
@@ -147,6 +155,7 @@ An explanatory chart that compares the cases of thefts in apartments for the wee
 
 
 #3 avg month for year 2023
+
 SELECT COUNT (unique_key) / 12.0 AS avg_month_year23
 FROM `bigquery-public-data.chicago_crime.crime`
 WHERE primary_type = 'THEFT'
@@ -155,7 +164,9 @@ AND date BETWEEN '2023-01-01 00:00:00 UTC' AND '2023-12-31 23:59:59 UTC'
 
  
 Result: 612
+
 #4 this query shows the total cases for dec2023:
+
 SELECT COUNT (unique_key) AS dec_23
 FROM `bigquery-public-data.chicago_crime.crime`
 WHERE primary_type = 'THEFT'
@@ -184,6 +195,7 @@ I got the chart below:
  
 I wanted to choose a tree map, more compelling to represent immediately the five main types of crime in Chicago during the year 2023 and I renamed it Top5 Crimes in Chicago 2023.
 https://public.tableau.com/app/profile/francesco.prete/viz/Top5CrimesinChicago/Sheet1
+
 a.
  
 To do so I clicked on Show me, on the right part of the screen and I chose the tree map chart.
@@ -196,12 +208,14 @@ Color: location_description
 Label: primary_type, SUM(f_0) <show mark labels>
 
 https://public.tableau.com/app/profile/francesco.prete/viz/Top5TheftLocationsinChicago2023/Sheet1?publish=yes
+
 b)
  
 
 
 For the next table in order to show the situation for a given period with peaks and dips I chose a line chart.
 https://public.tableau.com/app/profile/francesco.prete/viz/Book1_17250543623520/Sheet1?publish=yes 
+
 c)
  
 Moreover In this chart I have inserted the average line that shows the average for this month.
@@ -209,6 +223,7 @@ To do so, on the right side of the screen: Analytics > Summarize > Average Line 
 
 The next bar chart show the difference between the average of thefts in apartment during December 23 vs. the monthly average for the whole year 2023
 https://public.tableau.com/app/profile/francesco.prete/viz/average_dec23vs_monthly_average_23/Sheet1?publish=yes
+
 d)
  
 ACT
